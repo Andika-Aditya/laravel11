@@ -7,7 +7,7 @@
             <img src="{{ $productLists['imgProduct'] }}"  alt="">
         </div>
         <div class="detail-box">
-            <h5 class="tex-white-color">
+            <h5>
                 {{ $productLists['titleProduct'] }}
             </h5>
             <p>
