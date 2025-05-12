@@ -10,7 +10,7 @@
   <meta name="author" content="" />
   <link rel="shortcut icon" href="img/favicon.png" type="">
 
-  <title> {{ $slot }}</title>
+  <title> {{ $title }}</title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
