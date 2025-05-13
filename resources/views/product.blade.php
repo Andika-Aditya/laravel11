@@ -27,11 +27,6 @@
           <x-product-list :productList="$productList"></x-product-list>
         </div>
       </div>
-      <div class="btn btn-primary mt-5">
-        <a href="#">
-          Lihat Semua &raquo;
-        </a>
-      </div>
     </div>
   </section>
   <!-- end team section -->
