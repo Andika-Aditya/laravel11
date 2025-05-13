@@ -25,12 +25,10 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
-        // Membuat nomor produk secara acak dengan faker
-        $productNumber = fake()->randomDigit() . fake()->randomDigit() . fake()->randomDigit();
 
         return [
-            // Slug dengan format "obt000"
-            'slug' => Str::slug('obt' . $productNumber, '-'),
+            // Slug dengan format "obt-000"
+            'slug' => 'obt' . str_pad(fake()->unique()->numberBetween(1, 999), 3, '0', STR_PAD_LEFT),
 
             // Title produk dengan 2 kata
             'titleProduct' => fake()->sentence(2, false),

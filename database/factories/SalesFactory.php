@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Sales;
 use App\Models\Product;
 use App\Models\Employee;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -25,29 +26,24 @@ class SalesFactory extends Factory
      *
      * @return array
      */
+
+     public function employee( )BelongsTo   {
+        return $this->belongsTo(Employee::class);
+     }
     public function definition(): array
     {
-        // Mengambil slug dari produk dan karyawan secara acak
-        $product = Product::inRandomOrder()->first();
-        $employee = Employee::inRandomOrder()->first();
-
-        // Jika tidak ada data, gunakan slug default
-        $productSlug = $product ? $product->slug : 'obt00000';
-        $employeeSlug = $employee ? $employee->slug : 'KRY0000';
-
-
         // Membuat nomor produk secara acak dengan faker
         $trxNumber = fake()->randomDigit() . fake()->randomDigit() . fake()->randomDigit();
 
         return [
             // Slug dengan format "Trx000"
-            'slug' => Str::slug('trx' . $trxNumber, '-'),
+            'slug' => 'trx' . str_pad(fake()->unique()->numberBetween(1, 999), 3, '0', STR_PAD_LEFT),
 
-            // Product Slug dengan format "obt000"
-            'product_slug' => $productSlug,
+            // Mengahasilkan employee_id sekaligus membuat data karyawan
+            'employee_id' => Employee::factory(),
 
-            // Employee Slug dengan format "kry000"
-            'employee_slug' => $employeeSlug,
+            // Mengahasilkan product_id sekaligus membuat data product
+            'product_id' => Product::factory(),
 
             // Tanggal Transaksi
             'tglTransaksi' => fake()->date('Y-m-d'),

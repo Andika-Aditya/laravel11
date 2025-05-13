@@ -18,15 +18,14 @@ return new class extends Migration
             $table->char('metodeBayar', 1);
             $table->integer('jumlahBeli');
             $table->integer('totalBayar');
-
-            // Menambahkan foreign key dengan slug (string)
-            $table->string('product_slug');
-            $table->string('employee_slug');
-
-            // Relasi ke tabel products dan employees
-            $table->foreign('product_slug')->references('slug')->on('products');
-            $table->foreign('employee_slug')->references('slug')->on('employees');
-
+            $table->foreignId('employee_id')->constrained(
+                table: 'employees',
+                indexName: 'sales_employee_id'
+            );
+            $table->foreignId('product_id')->constrained(
+                table: 'products',
+                indexName: 'sales_product_id'
+            );
 
             $table->timestamps();
         });

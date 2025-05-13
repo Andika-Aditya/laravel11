@@ -30,7 +30,7 @@ class EmployeeFactory extends Factory
 
         return [
             // Slug dengan format "KRY000"
-            'slug' => Str::slug('kry' . $employeeNumber, '-'),
+            'slug' => 'kry' . str_pad(fake()->unique()->numberBetween(1, 999), 3, '0', STR_PAD_LEFT),
 
             // Data tetap
             'namaKaryawan' => fake()->name(),
