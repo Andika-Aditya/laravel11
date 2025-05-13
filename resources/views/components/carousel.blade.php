@@ -1,7 +1,7 @@
 @props(['carousels' => []])          
 
-@foreach ( $carousels as $carousel )
-<div class="carousel-item {{ $carousel['idCarousel'] == 0 ? 'active' : false }}">
+@foreach ( $carousels as $index => $carousel )
+<div class="carousel-item {{ $index == 0 ? 'active' : false }}">
     <div class="container ">
         <div class="row">
         <div class="col-md-6 ">
