@@ -10,7 +10,7 @@ class Sales extends Model
 {
     //
     use HasFactory;
-    protected $fillable = ['slug', 'product_slug', 'employee_slug', 'tglTransaksi', 'metodeBayar', 'jumlahBeli', 'totalBayar'];
+    protected $fillable = ['slug', 'tglTransaksi', 'metodeBayar', 'jumlahBeli', 'totalBayar'];
 
     // Fungsi menghitung total pendapatan tahunan
     public static function rataRataPendapatan($tahun = null)
