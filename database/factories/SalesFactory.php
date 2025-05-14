@@ -27,9 +27,7 @@ class SalesFactory extends Factory
      * @return array
      */
 
-     public function employee( )BelongsTo   {
-        return $this->belongsTo(Employee::class);
-     }
+
     public function definition(): array
     {
         // Membuat nomor produk secara acak dengan faker
