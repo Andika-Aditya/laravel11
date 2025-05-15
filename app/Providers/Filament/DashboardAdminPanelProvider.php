@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\AvatarProviders\CuteAvatarProviders;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -27,6 +28,10 @@ class DashboardAdminPanelProvider extends PanelProvider
             ->id('dashboardAdmin')
             ->path('dashboardAdmin')
             ->login()
+            ->emailVerification()
+            ->registration()
+            ->passwordReset()
+            ->profile()
             ->colors([
                 'primary' => Color::Amber,
             ])
