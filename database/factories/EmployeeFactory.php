@@ -34,10 +34,10 @@ class EmployeeFactory extends Factory
 
             // Data tetap
             'namaKaryawan' => fake()->name(),
-            'tglLahir' => $this->faker->date('Y-m-d'),  // Format tanggal: YYYY-MM-DD
+            'tglLahir' => fake()->date('Y-m-d'),  // Format tanggal: YYYY-MM-DD
 
             // Data shift tetap
-            'shif' => $this->faker->randomElement(['1', '2', '3']),
+            'shif' => fake()->randomElement(['1', '2', '3']),
         ];
     }
 }

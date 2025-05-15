@@ -12,7 +12,7 @@ class Product extends Model
     //
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['slug', 'titleProduct',    'overview',    'imgProduct', 'descriptionProduct', 'harga', 'expired', 'stok'];
+    protected $fillable = ['slug', 'titleProduct', 'overview', 'imgProduct', 'descriptionProduct', 'harga', 'expired', 'stok'];
 
     // Fungsi menghitung jumlah produk
     public static function jumlahProduk()
