@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('harga');
             $table->integer('stok');
             $table->date('expired');
+            $table->softDeletes();
 
             $table->timestamps();
         });
