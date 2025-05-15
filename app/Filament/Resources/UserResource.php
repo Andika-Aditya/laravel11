@@ -19,16 +19,41 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
+
+    protected static ?string $navigationGroup = 'Kelola Data';
+    protected static ?string $navigationLabel = 'Data Pengguna';
+    protected static ?string $slug = 'data-pengguna';
+
+    public static ?string $label = 'Data Pengguna';
+
+    protected ?string $heading = 'Custom Page Heading';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 //
-                TextInput::make('name')->required(),
-                TextInput::make('email')->required()->unique()->placeholder('abcd@admin.com'),
-                TextInput::make('password')->required()
+                TextInput::make('name')
+                    ->required()
+                    ->placeholder('Masukkan Nama Pengguna')
+                    ->label('Nama Pengguna')
+                    ->minLength(2)
+                    ->maxLength(255),
+                TextInput::make('email')
+                    ->email()
+                    ->required()
+                    ->unique()
+                    ->placeholder('abcd@admin.com')
+                    ->label('Email Pengguna')
+                    ->length(200),
+                TextInput::make('password')
+                    ->password()
+                    ->required()
+                    ->revealable()
+                    ->placeholder('Masukkan Kata Sandi Anda')
+                    ->label('Kata Sandi')
+                    ->length(50),
             ]);
     }
 
@@ -37,11 +62,18 @@ class UserResource extends Resource
         return $table
             ->columns([
                 //
-                TextColumn::make('name')->sortable()->searchable(isIndividual: true),
-                TextColumn::make('email')->sortable()->searchable()
+                TextColumn::make('name')
+                    ->sortable()
+                    ->searchable(isIndividual: true)
+                    ->label('Nama Pengguna'),
+                TextColumn::make('email')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Email Pengguna'),
             ])
             ->filters([
                 //
+                Tables\Filters\TrashedFilter::make(),
             ])
             ->defaultSort('id', 'asc')
             ->actions([
@@ -51,6 +83,8 @@ class UserResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\ForceDeleteBulkAction::make(),
+                    Tables\Actions\RestoreBulkAction::make(),
                 ]),
             ]);
     }
