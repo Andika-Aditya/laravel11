@@ -5,11 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Sales extends Model
 {
     //
     use HasFactory;
+    use SoftDeletes;
+
     protected $fillable = ['slug', 'tglTransaksi', 'metodeBayar', 'jumlahBeli', 'employee_id', 'product_id', 'totalBayar'];
 
     // Fungsi menghitung total pendapatan tahunan

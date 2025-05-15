@@ -27,6 +27,8 @@ return new class extends Migration
                 indexName: 'sales_product_id'
             );
 
+            $table->softDeletes();
+
             $table->timestamps();
         });
     }
