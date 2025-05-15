@@ -32,6 +32,7 @@ class DashboardAdminPanelProvider extends PanelProvider
             ->registration()
             ->passwordReset()
             ->profile()
+            ->sidebarCollapsibleOnDesktop()
             ->colors([
                 'primary' => Color::Amber,
             ])
