@@ -38,5 +38,14 @@ class DatabaseSeeder extends Seeder
                 'imageCarousel' => 'img/slider-apotek-3-img.png',
             ]
         ]);
+
+        User::insert([
+            'name' => 'admin',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('123'),
+            'email_verified_at' => now(),
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
     }
 }
