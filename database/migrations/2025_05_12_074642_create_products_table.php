@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('slug')->unique();
             $table->string('titleProduct');
-            $table->string('overview');
+            $table->char('overview', 1);
             $table->string('imgProduct');
             $table->string('descriptionProduct');
             $table->integer('harga');

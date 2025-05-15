@@ -34,28 +34,7 @@ class ProductFactory extends Factory
             'titleProduct' => fake()->sentence(2, false),
 
             // Menggunakan list kategori obat secara acak
-            'overview' => fake()->randomElement([
-                'Antibiotik Oral',
-                'Antihistamin Tablet',
-                'Obat Sakit',
-                'Vitamin C',
-                'Antipiretik Sirup',
-                'Obat Luka',
-                'Antasida Cair',
-                'Obat Batuk',
-                'Obat Demam',
-                'Obat Maag',
-                'Obat Flu',
-                'Antinyeri Topikal',
-                'Obat Diare',
-                'Obat Kulit',
-                'Obat Gatal',
-                'Obat Jerawat',
-                'Obat Tetes',
-                'Obat Herbal',
-                'Obat Migrain',
-                'Antifungal Krim'
-            ]),
+            'overview' => fake()->randomElement(['1', '2', '3']),
 
             // Gambar produk tetap
             'imgProduct' => 'img/no-image.png',
