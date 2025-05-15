@@ -10,7 +10,7 @@ class Sales extends Model
 {
     //
     use HasFactory;
-    protected $fillable = ['slug', 'tglTransaksi', 'metodeBayar', 'jumlahBeli', 'totalBayar'];
+    protected $fillable = ['slug', 'tglTransaksi', 'metodeBayar', 'jumlahBeli', 'employee_id', 'product_id', 'totalBayar'];
 
     // Fungsi menghitung total pendapatan tahunan
     public static function rataRataPendapatan($tahun = null)
@@ -41,5 +41,16 @@ class Sales extends Model
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
+    }
+
+    // Mutator untuk menghitung total bayar
+    public function setTotalBayarAttribute($value)
+    {
+        // Ambil harga dari relasi product
+        $harga = $this->product->harga ?? 0;
+        $jumlahBeli = $this->jumlahBeli ?? 0;
+
+        // Hitung total bayar
+        $this->attributes['totalBayar'] = $harga * $jumlahBeli;
     }
 }
