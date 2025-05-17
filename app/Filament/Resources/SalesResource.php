@@ -5,6 +5,8 @@ namespace App\Filament\Resources;
 use Filament\Forms;
 use Filament\Tables;
 use App\Models\Sales;
+use App\Models\Product;
+use App\Models\Employee;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
@@ -13,9 +15,9 @@ use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\DatePicker;
+
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\SalesResource\Pages;
-
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\SalesResource\RelationManagers;
 
@@ -60,21 +62,21 @@ class SalesResource extends Resource
                         $harga = \App\Models\Product::find($state)?->harga ?? 0;
                         $set('harga', $harga);
 
-                        // $id = \App\Models\Product::find($state)?->id ?? '';
-                        // $set('idproduct', $id);
+                        $id = Product::find($state)?->id ?? '';
+                        $set('idproduct', $id);
                     }),
 
-                Select::make('employee_id')
+                Select::make('idpgw')
                     ->label('Pilih Pegawai')
                     ->relationship('employee', 'namaKaryawan')
                     ->required()
                     ->reactive()
                     ->afterStateUpdated(function ($state, callable $set) {
                         // Pastikan bahwa nilai 'state' bukan null atau 0
-                        // $id = \App\Models\Employee::find($state)?->id ?? '';
-                        // $set('idpgw', $id);
+                        $slugData = strval(Employee::find($state)?->slug);
+                        $id = ltrim($slugData, 'kry');
+                        $set('idpgw', $id);
                     }),
-
 
                 DatePicker::make('tglTransaksi')
                     ->required()
@@ -91,8 +93,9 @@ class SalesResource extends Resource
                 TextInput::make('harga')
                     ->label('Harga Produk')
                     ->required()
+                    ->reactive()
                     ->prefix('Rp. ')
-                    ->disabled(),  // Non-editable
+                    ->disable(),
 
                 TextInput::make('jumlahBeli')
                     ->label('Jumlah Produk Yang Dibeli')
@@ -160,7 +163,7 @@ class SalesResource extends Resource
                     ->sortable()
                     ->searchable()
                     ->label('Total Yang Dibayarkan'),
-            ])
+            ])->emptyStateHeading('Tidak Ada Data Penjualan')->emptyStateIcon('heroicon-o-presentation-chart-line')
             ->filters([
                 //
                 Tables\Filters\TrashedFilter::make(),

@@ -83,12 +83,15 @@ class EmployeeResource extends Resource
                         '2' => 'Siang',
                         '3' => 'Malam',
                         default => 'Tidak Diketahui',
+                    })->badge()->color(fn(string $state): string => match ($state) {
+                        '1' => 'info',
+                        '2' => 'warning',
+                        '3' => 'gray',
                     })
                     ->sortable()
                     ->searchable()
                     ->Label('Shift'),
-
-            ])
+            ])->emptyStateHeading('Tidak Ada Data Pegawai')->emptyStateIcon('heroicon-o-user-group')
             ->filters([
                 //
                 Tables\Filters\TrashedFilter::make(),

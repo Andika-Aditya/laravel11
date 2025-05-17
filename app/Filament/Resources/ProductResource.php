@@ -168,7 +168,7 @@ class ProductResource extends Resource
                     ->sortable()
                     ->searchable()
                     ->label('Stok Produk'),
-            ])
+            ])->emptyStateHeading('Tidak Ada Data Produk')->emptyStateIcon('heroicon-o-archive-box')
             ->filters([
                 //
                 Tables\Filters\TrashedFilter::make(),

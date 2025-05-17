@@ -70,7 +70,7 @@ class UserResource extends Resource
                     ->sortable()
                     ->searchable()
                     ->label('Email Pengguna'),
-            ])
+            ])->emptyStateHeading('Tidak Adad Data Pengguna')->emptyStateIcon('heroicon-o-user-group')
             ->filters([
                 //
                 Tables\Filters\TrashedFilter::make(),
